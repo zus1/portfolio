@@ -40,6 +40,7 @@ class PostResource extends Resource
                     ->required(),
                 Textarea::make('description')
                     ->columnSpanFull()
+                    ->maxLength(450)
                     ->required(),
                 FileUpload::make('image')
                     ->disk('public')
@@ -47,6 +48,7 @@ class PostResource extends Resource
                     ->visibility('public')
                     ->image()
                     ->rule(new ImageRule(maxSize: 2097152, maxWidth: 400, maxHeight: 225, allowedRatio: 0.5625)),
+                TextInput::make('url'),
                 Toggle::make('active')
                     ->required(),
                 Select::make('category_id')
@@ -70,9 +72,8 @@ class PostResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('title')
                     ->searchable(),
-                TextColumn::make('description')
-                    ->searchable(),
                 TextColumn::make('image'),
+                TextColumn::make('url'),
                 IconColumn::make('active')
                     ->boolean(),
                 TextColumn::make('category.title')

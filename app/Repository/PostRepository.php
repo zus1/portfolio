@@ -14,6 +14,7 @@ class PostRepository extends BaseRepository
         $builder = $this->getBuilder();
 
         return $builder->whereRelation('category', 'title', $category)
+            ->where('active', true)
             ->simplePaginate($recordsPerPage)
             ->withQueryString();
     }

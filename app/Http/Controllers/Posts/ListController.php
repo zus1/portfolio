@@ -9,10 +9,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-class Get
+class ListController
 {
     public function __construct(
-        private PostRepository $repository,
+        private readonly PostRepository $repository,
     ){
     }
 

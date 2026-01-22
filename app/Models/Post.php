@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
  * @property string $title
  * @property string $description
  * @property string $image
+ * @property string $url
  * @property bool $active
  * @property string $created_at
  */
@@ -24,7 +25,8 @@ class Post extends Model
         'description',
         'active',
         'category_id',
-        'image'
+        'image',
+        'url',
     ];
 
     protected function casts(): array
