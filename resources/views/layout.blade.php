@@ -41,7 +41,7 @@
                 <div>
                     <ul class="mt-4 space-y-2 text-gray-700">
                         <li class="flex items-center gap-2">
-                            <a href="mailto:hello@yourservice.io" class="inline-link flex gap-2">
+                            <a href="mailto:{{$tenant->email}}" class="inline-link flex gap-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
                                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                      class="tabler-icon tabler-icon-mail">
@@ -51,7 +51,7 @@
                             </a>
                         </li>
                         <li class="flex w-auto items-center justify-start gap-2">
-                            <a href="https://twitter.com/yourserviceio" class="inline-link flex gap-2" target="_blank"
+                            <a href="https://api.whatsapp.com/send?phone={{$tenant->phone}}&text=Hello there, im sending this message from your portfolio web page" class="inline-link flex gap-2" target="_blank"
                                rel="noreferrer">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
                                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"

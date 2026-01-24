@@ -24,6 +24,12 @@
                 <a href="{{route('post.list', ['category' => \App\Enums\Categories::EXPERIENCES->value])}}" class="bg-blue-950 text-white font-semibold py-2 px-4 rounded-lg hover:bg-tertiary/80 text-center">
                     See Projects
                 </a>
+                <a href="{{route('post.list', ['category' => \App\Enums\Categories::SKILLS->value])}}" class="bg-blue-950 text-white font-semibold py-2 px-4 rounded-lg hover:bg-tertiary/80 text-center">
+                    See Skills
+                </a>
+                <a href="{{route('tenants.cv')}}" class="bg-blue-950 text-white font-semibold py-2 px-4 rounded-lg hover:bg-tertiary/80 text-center">
+                    Download CV
+                </a>
             </div>
         </div>
     </section>

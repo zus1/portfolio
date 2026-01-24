@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use App\Traits\RemoveOldFile;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 
 /**
  * @property int $id
@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Storage;
  */
 class Tenant extends Model
 {
-    use HasFactory;
+    use HasFactory, RemoveOldFile;
 
     protected $fillable = [
         'email',
@@ -39,13 +39,8 @@ class Tenant extends Model
     protected static function booted(): void
     {
         static::updating(function (Tenant $tenant) {
-            if(
-                $tenant->isDirty('logo')
-                && ($original = $tenant->getOriginal('logo')) !== null
-                && Storage::disk('public')->exists($original)
-            ) {
-                Storage::delete($original);
-            }
+            static::removeOldFile($tenant, 'logo');
+            static::removeOldFile($tenant, 'cv');
         });
     }
 

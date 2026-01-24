@@ -40,8 +40,7 @@ class PostResource extends Resource
                     ->required(),
                 Textarea::make('description')
                     ->columnSpanFull()
-                    ->maxLength(450)
-                    ->required(),
+                    ->maxLength(450),
                 FileUpload::make('image')
                     ->disk('public')
                     ->directory('images')
