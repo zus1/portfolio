@@ -2,29 +2,31 @@
 
 namespace App\Models;
 
+use App\Traits\RemoveOldFile;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Facades\Storage;
 
 /**
  * @property int $id
  * @property string $title
  * @property string $description
  * @property string $image
+ * @property string $url
  * @property bool $active
  * @property string $created_at
  */
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory, RemoveOldFile;
 
     protected $fillable = [
         'title',
         'description',
         'active',
         'category_id',
-        'image'
+        'image',
+        'url',
     ];
 
     protected function casts(): array
@@ -42,13 +44,7 @@ class Post extends Model
     protected static function booted(): void
     {
         static::updating(function (Post $post) {
-            if(
-                $post->isDirty('image')
-                && ($original = $post->getOriginal('image')) !== null
-                && Storage::disk('public')->exists($original)
-            ) {
-                Storage::delete($original);
-            }
+            self::removeOldFile($post, 'image');
         });
     }
 }
